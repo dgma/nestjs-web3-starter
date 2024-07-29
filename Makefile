@@ -8,11 +8,11 @@ all: init clean typecheck test
 
 init:; npm i
 
-typecheck :; npx tsc --project tsconfig.json
+typecheck :; npx tsc --noEmit --project tsconfig.json
 
 clean :; rm -rf dist
 
-lint :; npx eslint \"{src,apps,libs,test}/**/*.ts\" --fix
+lint :; npx eslint \{src,apps,libs,test\}/**/*.ts --fix
 
 test :; npx jest --passWithNoTests
 
