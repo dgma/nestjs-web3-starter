@@ -1,8 +1,8 @@
 name: Quality gate
 on:
   push:
-    # branches-ignore:
-    #   - main
+    branches-ignore:
+      - "main"
 
 permissions:
   contents: read
@@ -14,13 +14,24 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/setup
-      - run: make typecheck;
       - run: make lint
-  test:
+  typecheck:
     needs: lint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/setup
-      - name: Run unit tests
-        run: make test
+      - run: make typecheck
+  test:
+    needs: typecheck
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup
+      - run: make test
+  build:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: make build.prod;

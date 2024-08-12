@@ -1,35 +1,37 @@
 # web3-glue
 
+Development starter kit for web3 node.js apps with nestjs & viem
+
 ## Installation
 
 ```bash
-npm install
+make
 ```
 
 ## Running the app
 
 ```bash
 # development
-$ npm run start
+$ make start
 
 # watch mode
-$ npm run start:dev
+$ make start.dev
 
 # production mode
-$ npm run start:prod
+$ make start.prod
 ```
 
 ## Test
 
 ```bash
 # unit tests
-$ npm run test
+$ make test
 
 # e2e tests
-$ npm run test:e2e
+$ make test.e2e
 
 # test coverage
-$ npm run test:cov
+$ make test.cov
 ```
 
 ## License

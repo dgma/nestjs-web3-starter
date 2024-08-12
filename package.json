@@ -1,40 +1,46 @@
 {
-  "name": "web3-glue",
+  "name": "nestjs-web3-starter",
   "version": "0.0.1",
-  "description": "Webapp interactions automation via REST",
+  "description": "Development starter kit for web3 node.js apps with nestjs & viem",
   "keywords": [
     "web3",
     "nestjs",
-    "restAPI"
+    "viem",
+    "kit"
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dgma/web3-glue.git"
+    "url": "git+https://github.com/dgma/nestjs-web3-starter.git"
   },
   "author": "Dzmitry Lahunouski",
   "license": "SEE LICENSE IN LICENSE",
   "bugs": {
-    "url": "https://github.com/dgma/web3-glue/issues"
+    "url": "https://github.com/dgma/nestjs-web3-starter/issues"
   },
-  "homepage": "https://github.com/dgma/web3-glue#readme",
+  "homepage": "https://github.com/dgma/nestjs-web3-starter#readme",
   "engines": {
     "node": ">=20.11.0"
   },
-  "type": "module",
   "scripts": {
     "prepare": "husky"
   },
   "dependencies": {
+    "@dotenvx/dotenvx": "^1.7.0",
     "@nestjs/common": "^10.0.0",
+    "@nestjs/config": "^3.2.3",
     "@nestjs/core": "^10.0.0",
     "@nestjs/platform-express": "^10.0.0",
     "reflect-metadata": "^0.2.0",
-    "rxjs": "^7.8.1"
+    "rxjs": "^7.8.1",
+    "viem": "^2.19.3"
   },
   "devDependencies": {
     "@nestjs/cli": "^10.0.0",
     "@nestjs/schematics": "^10.0.0",
     "@nestjs/testing": "^10.0.0",
+    "@swc/cli": "^0.4.0",
+    "@swc/core": "^1.7.10",
+    "@swc/jest": "^0.2.36",
     "@types/express": "^4.17.17",
     "@types/jest": "^29.5.2",
     "@types/node": "^20.3.1",
@@ -50,9 +56,7 @@
     "prettier": "^3.0.0",
     "source-map-support": "^0.5.21",
     "supertest": "^7.0.0",
-    "ts-jest": "^29.1.0",
     "ts-loader": "^9.4.3",
-    "ts-node": "^10.9.1",
     "tsconfig-paths": "^4.2.0",
     "typescript": "^5.1.3"
   },
@@ -65,7 +69,9 @@
     "rootDir": "src",
     "testRegex": ".*\\.spec\\.ts$",
     "transform": {
-      "^.+\\.(t|j)s$": "ts-jest"
+      "^.+\\.(t|j)s?$": [
+        "@swc/jest"
+      ]
     },
     "collectCoverageFrom": [
       "**/*.(t|j)s"

@@ -4,7 +4,7 @@ SHELL := /bin/bash
 
 .PHONY: init build clear lint typecheck test pre-commit pre-push migrate up up-all list funding fuel report profiles recover decrypt encrypt
 
-all: init clean typecheck test
+all: init clean typecheck
 
 init:; npm i
 
@@ -22,7 +22,7 @@ test.cov :; npx jest --passWithNoTests --coverage
 
 test.debug :; node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand
 
-test.e2e: npx jest --config ./test/jest-e2e.json
+test.e2e:; npx jest --config ./test/jest-e2e.json
 
 pre-commit: typecheck lint-stg
 
@@ -38,6 +38,22 @@ start.dev:; npx nest start --watch
 
 start.debug:; npx nest start --debug --watch
 
+start.debug.open:; npx nest start --debug 0.0.0.0 --watch
+
 start.prod:; node dist/main
+
+# docker aliases
+
+up.dev:
+	@docker compose up -d && docker compose logs -f
+
+build.prod:
+	@docker compose -f docker-compose.prod.yml build
+
+up.prod:
+	@docker compose -f docker-compose.prod.yml up -d && docker compose -f docker-compose.prod.yml logs -f
+
+clear.prod: 
+	@docker compose -f docker-compose.prod.yml down
 
 -include ${FCT_PLUGIN_PATH}/makefile-external

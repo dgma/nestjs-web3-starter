@@ -1,0 +1,15 @@
+version: '3.7'
+
+services:
+  nest-app-develop:
+    hostname: nest-app-develop
+    image: nest-app-develop
+    restart: always
+    build:
+      context: .
+      target: dev
+    ports:
+      - 3000:3000
+      - 9229:9229
+    volumes:
+      - ./src:/app/src:cached
