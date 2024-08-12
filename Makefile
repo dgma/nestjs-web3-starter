@@ -2,7 +2,7 @@ SHELL := /bin/bash
 
 -include .env
 
-.PHONY: init build clear lint typecheck test pre-commit pre-push migrate up up-all list funding fuel report profiles recover decrypt encrypt
+.PHONY: init typecheck clean lint test test.watch test.cov test.debug test.e2e pre-commit pre-push build lint-stg start start.dev start.debug start.debug.open start.prod up.dev build.prod up.prod clear.prod encrypt.prod
 
 all: init clean typecheck
 
@@ -55,5 +55,9 @@ up.prod:
 
 clear.prod: 
 	@docker compose -f docker-compose.prod.yml down
+
+# encryption setup
+encrypt.prod:
+	@npx dotenvx encrypt -f conf/.production.secrets.env
 
 -include ${FCT_PLUGIN_PATH}/makefile-external
