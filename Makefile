@@ -22,7 +22,7 @@ test.cov :; npx jest --passWithNoTests --coverage
 
 test.debug :; node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand
 
-test.e2e:; npx jest --config ./test/jest-e2e.json
+test.e2e:; npx jest --config ./jest-e2e.config.ts
 
 pre-commit: typecheck lint-stg
 
