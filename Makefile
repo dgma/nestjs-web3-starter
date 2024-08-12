@@ -42,4 +42,18 @@ start.debug.open:; npx nest start --debug 0.0.0.0 --watch
 
 start.prod:; node dist/main
 
+# docker aliases
+
+up.dev:
+	@docker compose up -d && docker compose logs -f
+
+build.prod:
+	@docker compose -f docker-compose.prod.yml build
+
+up.prod:
+	@docker compose -f docker-compose.prod.yml up -d && docker compose -f docker-compose.prod.yml logs -f
+
+clear.prod: 
+	@docker compose -f docker-compose.prod.yml down
+
 -include ${FCT_PLUGIN_PATH}/makefile-external

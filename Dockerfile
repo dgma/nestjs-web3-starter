@@ -11,6 +11,7 @@ COPY . .
 RUN npm ci
 
 FROM deps as prod
+ENV NODE_ENV=production
 RUN make build
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 prod-nodejs
@@ -19,5 +20,6 @@ CMD ["make", "start.prod"]
 
 FROM deps as dev
 EXPOSE 9229
+ENV NODE_ENV=development
 RUN make build
 CMD ["make", "start.debug.open"]
